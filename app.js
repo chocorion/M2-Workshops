@@ -51,7 +51,11 @@ app.get("/workshop/:name", function (req, res) {
 });
 
 app.post("/remove-workshop", function (req, res) {
-    res.status(500).send("TODO");
+    const name = req.body.name;
+
+    InMemoryWorkshop.removeWorkshopByName(name)
+    .then(() => res.redirect("/"))
+    .catch(e =>res.send(e.message));
 });
 
 app.post("/update-workshop", function(req, res) {
@@ -62,8 +66,6 @@ app.post("/update-workshop", function(req, res) {
     InMemoryWorkshop.updateWorkshop(name, newName, newDescription)
     .then(() => res.redirect("/"))
     .catch(e =>res.send(e.message));
-
-
 });
 
 

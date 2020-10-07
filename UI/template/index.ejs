@@ -19,7 +19,13 @@
         <div class="media-body">
             <h5 class="mt-0 mb-1"><%= workshop.name %></h5>
             <%= workshop.description %>
-        </div>        
+        </div>
+
+        <a type="button" href="/workshop/<%= workshop.name %>" class="btn btn-secondary">Edit</a>
+        <form action="/remove-workshop" method="post">
+            <button type="submit" class="btn btn-danger">Remove</button>
+            <input id="name" name="name" type="hidden" value="<%= workshop.name %>">
+        </form>
     </li>
 <% }); %>
 </ul>

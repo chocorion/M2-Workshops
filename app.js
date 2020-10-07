@@ -32,10 +32,8 @@ app.post("/workshop", function (req, res) {
     const description = req.body.description;
     InMemoryWorkshop.addWorkshop(name, description).then(() => {
         InMemoryWorkshop.getWorkshopList()
-        .then(workshops => {
-            res.render("index", {
-                workshops: workshops
-            });
+        .then(() => {
+            res.redirect("/");
         });
     })
     .catch(e =>res.send(e.message));

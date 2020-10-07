@@ -45,7 +45,7 @@ app.get("/workshop/:name", function (req, res) {
     const workshopName = req.params.name;
     InMemoryWorkshop.getWorkshopByName(workshopName)
     .then(workshop => {
-        res.render("/UI/template/workshop", workshop);
+        res.render("workshop", {workshop : workshop});
     })
     .catch(e =>ejs.send(e.message));
 });
@@ -54,12 +54,16 @@ app.post("/remove-workshop", function (req, res) {
     res.status(500).send("TODO");
 });
 
-app.get("/update-workshop", (req, res) => {
-    res.status(500).send("TODO");
-});
-
 app.post("/update-workshop", function(req, res) {
-    res.status(500).send("TODO");
+    const name = req.body.realName;
+    const newName = req.body.name;
+    const newDescription = req.body.description;
+
+    InMemoryWorkshop.updateWorkshop(name, newName, newDescription)
+    .then(() => res.redirect("/"))
+    .catch(e =>res.send(e.message));
+
+
 });
 
 

@@ -12,7 +12,7 @@ function getWorkshopByName(name) {
         if (!name) {
             reject(new Error("name parameter is required"));
         }
-        resolve(inMemoryWorkshop.find(workshop => workshop.name === workshop));
+        resolve(inMemoryWorkshop.find(workshop => workshop.name === name));
     });
 }
 
@@ -57,6 +57,7 @@ function updateWorkshop(name, newName, newDescription) {
             .then(workshop => {
                 workshop.name = newName? newName : workshop.name,
                 workshop.description = newDescription? newDescription : workshop.description;
+                resolve();
             })
             .catch(error => {
                 reject(error);

@@ -54,9 +54,14 @@ app.post("/remove-workshop", function (req, res) {
     res.status(500).send("TODO");
 });
 
+app.get("/update-workshop", (req, res) => {
+    res.status(500).send("TODO");
+});
+
 app.post("/update-workshop", function(req, res) {
     res.status(500).send("TODO");
 });
+
 
 app.listen(3000, function () {
   console.log("Workshop app listening on port 3000!");
